@@ -1,19 +1,22 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { createMessageDto } from './dtos/create-message.dto';
 
-@Controller('messages')
+
+@Controller('messages')  // Here Controller is class decorator it is applied to class
 export class MessagesController {
-    @Get()
+    @Get() //get is method decorator
     listMessages(){
 
     }
 
     @Post()
-    createMessage(){
-
+    createMessage(@Body () body: createMessageDto){ // body is argument decorator
+        
+        console.log(body);
     }
 
     @Get('/:id')
-    getMessage() {
-        
+    getMessage(@Param('id') id:string) {
+       console.log(id);
     }
 }
